@@ -4,10 +4,110 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Task Manager</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* General Styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* Main Container */
+        .container {
+            width: 100%;
+            max-width: 600px;
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        h1 {
+            text-align: center;
+            color: #1a2a4c;
+            margin-bottom: 30px;
+        }
+
+        /* Form Styling */
+        .task-form {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+        .task-form input[type="text"] {
+            flex-grow: 1;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        .task-form input[type="text"]:focus {
+            outline: none;
+            border-color: #4a69e2;
+        }
+        .task-form button {
+            padding: 12px 20px;
+            background-color: #4a69e2;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .task-form button:hover {
+            background-color: #3b55b5;
+        }
+
+        /* Task List Styling */
+        .task-list {
+            list-style: none;
+            padding: 0;
+        }
+        .task-list li {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            border-left: 4px solid #4a69e2;
+            font-size: 16px;
+        }
+    </style>
 </head>
 <body>
-    Task Manager
-    
+
+    <div class="container">
+        <h1>My Tasks ✅</h1>
+        
+        <div>
+            <form class="task-form" method="POST" action="/tasks">
+                <input type="text" name="task" placeholder="e.g., Finish project report" required>
+                <button type="submit">Add Task</button>
+            </form>
+        </div>
+        
+        <ul class="task-list">
+            <% tasks.forEach(function(task) { %>
+                <li><%= task.title %></li>
+                
+            <% }); %>
+        </ul>
+    </div>
 
 </body>
 </html>

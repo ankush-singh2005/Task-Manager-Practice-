@@ -6,7 +6,7 @@ const setUser = function(sessionId,user){
 
 const getUser = function(sessionId){
     const user = sessionIdUserToMap.get(sessionId);
-    console.log('getUser for sessionId:', sessionId, 'returns:', user);
+    // console.log('getUser for sessionId:', sessionId, 'returns:', user);
     return user;
 }
 

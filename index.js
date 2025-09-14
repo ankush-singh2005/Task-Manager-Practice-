@@ -1,6 +1,7 @@
 require('dotenv').config()
 const authRoutes = require('./routes/authRoutes')
 const staticRoutes = require('./routes/staticRoutes')
+const taskRoutes = require('./routes/taskRoutes')
 const express = require('express');
 const app=express();
 const mongoose=require('mongoose');
@@ -30,6 +31,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/auth",authRoutes)
 // app.use("/", )
 app.use("/", authMiddleware.checkAuth, staticRoutes)
+app.use("/tasks", authMiddleware.checkAuth, taskRoutes);
 
 
 //listening
