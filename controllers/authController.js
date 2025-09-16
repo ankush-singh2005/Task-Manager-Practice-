@@ -13,10 +13,13 @@ const authController = {
                     message:"Invalid email or password"
                 });
             }
-            const sessionId=uuidv4(); //it makes a unique id when the user logs in
-            setUser(sessionId,user);
-            console.log('setUser:', sessionId, user);
-            res.cookie("uid",sessionId);
+
+            // const sessionId=uuidv4(); //it makes a unique id when the user logs in
+            // console.log('setUser:', sessionId, user);
+
+            //sending user to setUser service using middleware
+            const token=setUser(user);
+            res.cookie("uid",token);
             return res.redirect('/');
     },
 
@@ -25,7 +28,7 @@ const authController = {
         try {
                 const isUser = await User.findOne({email:email});
                 if(isUser){ 
-                    return res.json({message:"Already"});
+                    return res.json({message:"User already exists"});
                 }
                 const data = new User({
                     username:username,
@@ -38,7 +41,7 @@ const authController = {
                 }
         } catch (error) {
             console.log(error)
-                return res.status(500).json({message:"Internal server error"});
+            return res.status(500).json({message:"Internal server error"});
         }
         return res.redirect('/');
     }
